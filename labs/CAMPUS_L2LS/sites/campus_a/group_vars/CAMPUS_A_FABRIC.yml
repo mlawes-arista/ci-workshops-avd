@@ -11,6 +11,10 @@ generate_cv_tags:
   topology_hints: true
   campus_fabric: true
 
+# Used to generate CloudVision device tags with the `generate_cv_tags.campus_fabric` feature.
+campus: Cleveland
+campus_pod: Campus A
+
 # Spine Switches
 l3spine:
   defaults:
