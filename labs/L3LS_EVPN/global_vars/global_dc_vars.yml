@@ -15,13 +15,19 @@ ansible_python_interpreter: $(which python3)
 avd_data_validation_mode: error
 
 # arista.avd.cv_deploy role parameters
-cv_token: # Fill in here with a CloudVision Service Account Token
+# Export token using 'export CV_TOKEN=mytoken'
+cv_token: "{{ lookup('env', 'CV_TOKEN') }}"
 cv_server: cvp
 cv_verify_certs: false
 
-# arista.avd.eos_config_deploy_cvp role parameters
-cv_collection: v3
-execute_tasks: true
+# TerminAttr settings
+cv_settings:
+  onprem_clusters:
+    - name: atd-cvp
+      servers:
+        - name: 192.168.0.5
+  terminattr:
+    disable_aaa: true
 
 # Local Users
 local_users:
@@ -49,22 +55,6 @@ ntp:
 
 # Domain/DNS
 dns_domain: atd.lab
-
-# TerminAttr
-daemon_terminattr:
-  # Address of the gRPC server on CloudVision
-  # TCP 9910 is used on on-prem
-  # TCP 443 is used on CV as a Service
-  cvaddrs: # For single cluster
-    - 192.168.0.5:9910
-  # Authentication scheme used to connect to CloudVision
-  cvauth:
-    method: token
-    token_file: "/tmp/token"
-  # Exclude paths from Sysdb on the ingest side
-  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
-  # Exclude paths from the shared memory table
-  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
 
 # Point to Point Links MTU Override for Lab
 p2p_uplinks_mtu: 1500
@@ -104,5 +94,3 @@ bgp_peer_groups:
 #       nodes: [ s1-brdr2, s2-brdr2 ]
 #       interfaces: [ Ethernet5, Ethernet5 ]
 #       profile: S1_to_S2_profile
-
-
