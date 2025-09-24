@@ -1,10 +1,6 @@
 ---
 fabric_name: SITE2_FABRIC
 
-# Set Design Type to L2ls
-design:
-  type: l2ls
-
 # Repeat MLAG addressing between pairs
 fabric_ip_addressing:
   mlag:
@@ -32,7 +28,7 @@ l3spine:
           mgmt_ip: 192.168.0.21/24
 
 # Leaf Switches
-leaf:
+l2leaf:
   defaults:
     platform: cEOS
     mlag_peer_ipv4_pool: 10.2.253.0/31
