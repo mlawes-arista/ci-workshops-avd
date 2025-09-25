@@ -45,7 +45,7 @@ aaa_settings:
 dns_settings:
   domain: atd.lab
   servers:
-    - ip_address: 192.168.0.5
+    - ip_address: 192.168.0.1
 
 # NTP Servers IP or DNS name, first NTP server will be preferred, and sourced from Management VRF
 ntp_settings:
