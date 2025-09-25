@@ -29,32 +29,34 @@ cv_settings:
   terminattr:
     disable_aaa: true
 
-# Local Users
-local_users:
-  - name: arista
-    privilege: 15
-    role: network-admin
-    sha512_password: "{{ ansible_password | password_hash('sha512', salt='arista', rounds=5000) }}"
-    ssh_key: "{{ lookup('ansible.builtin.file', '~/.ssh/id_rsa.pub') }}"
-
-# AAA
-aaa_authorization:
-  exec:
-    default: local
+# AAA settings and local users
+aaa_settings:
+  authorization:
+    exec:
+      default: local
+  local_users:
+    - name: arista
+      privilege: 15
+      role: network-admin
+      sha512_password: "{{ ansible_password | password_hash('sha512', salt='arista', rounds=5000) }}"
+      ssh_key: "{{ lookup('ansible.builtin.file', '~/.ssh/id_rsa.pub') }}"
 
 # OOB Management network default gateway.
 mgmt_gateway: 192.168.0.1
 mgmt_interface_vrf: default
+mgmt_interface: Management0
 
 # NTP Servers IP or DNS name, first NTP server will be preferred, and sourced from Management VRF
-ntp:
+ntp_settings:
   servers:
     - name: 192.168.0.1
       iburst: true
-      local_interface: Management0
 
-# Domain/DNS
-dns_domain: atd.lab
+# DNS settings
+dns_settings:
+  domain: atd.lab
+  servers:
+    - ip_address: 192.168.0.1
 
 # Point to Point Links MTU Override for Lab
 p2p_uplinks_mtu: 1500
