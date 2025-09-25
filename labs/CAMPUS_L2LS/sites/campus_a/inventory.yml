@@ -11,14 +11,13 @@ CAMPUS_A:
             spine-1:
             spine-2:
         CAMPUS_A_LEAFS:
+          hosts:
+            leaf-2a:
           children:
             IDF1_LEAFS:
               hosts:
                 leaf-1a:
                 leaf-1b:
-            IDF2_LEAFS:
-              hosts:
-                leaf-2a:
             IDF3_LEAFS:
               hosts:
                 leaf-3a:
