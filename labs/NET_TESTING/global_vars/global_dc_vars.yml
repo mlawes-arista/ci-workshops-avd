@@ -1,6 +1,6 @@
 ---
 
-# Credentials for CVP and EOS Switches
+# Credentials for EOS Switches
 ansible_user: arista
 ansible_password: "{{ lookup('env', 'LABPASSPHRASE') }}"
 ansible_network_os: arista.eos.eos
