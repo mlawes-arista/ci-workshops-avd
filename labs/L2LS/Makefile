@@ -67,3 +67,10 @@ cicd-ff: ## Copy complete files for CICD
 	cp -a complete/site_1/group_vars/. sites/site_1/group_vars/ && \
 	cp -a complete/site_2/group_vars/. sites/site_2/group_vars/ && \
 	cp -a complete/global_vars/. global_vars/
+
+########################################################
+# Build and deploy all sites
+########################################################
+
+.PHONY: all
+all: build-site-1 build-site-2 deploy-site-1 deploy-site-2
