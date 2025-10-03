@@ -12,13 +12,11 @@ ansible_httpapi_port: 443
 ansible_httpapi_use_ssl: true
 ansible_httpapi_validate_certs: false
 ansible_python_interpreter: $(which python3)
-avd_data_validation_mode: error
 
 # arista.avd.cv_deploy role parameters
 # Export token using 'export CV_TOKEN=mytoken'
 cv_token: "{{ lookup('env', 'CV_TOKEN') }}"
 cv_server: cvp
-cv_verify_certs: false
 
 # TerminAttr settings
 cv_settings:
@@ -39,7 +37,6 @@ aaa_settings:
       privilege: 15
       role: network-admin
       sha512_password: "{{ ansible_password | password_hash('sha512', salt='arista', rounds=5000) }}"
-      ssh_key: "{{ lookup('ansible.builtin.file', '~/.ssh/id_rsa.pub') }}"
 
 # OOB Management network default gateway.
 mgmt_gateway: 192.168.0.1
