@@ -19,7 +19,6 @@ spine:
 l3leaf:
   defaults:
     platform: cEOS
-    spanning_tree_priority: 4096
     spanning_tree_mode: mstp
     loopback_ipv4_pool: 10.250.2.0/24
     loopback_ipv4_offset: 2

@@ -20,7 +20,6 @@ l3spine:
   defaults:
     platform: cEOS
     spanning_tree_mode: mstp
-    spanning_tree_priority: 4096
     loopback_ipv4_pool: 10.1.252.0/24
     mlag_peer_ipv4_pool: 10.1.253.0/31
     mlag_peer_l3_ipv4_pool: 10.1.253.2/31
@@ -42,7 +41,6 @@ l2leaf:
     platform: cEOS
     mlag_peer_ipv4_pool: 10.1.253.0/31
     spanning_tree_mode: mstp
-    spanning_tree_priority: 16384
     uplink_switches: [ spine-1, spine-2 ]
     uplink_interfaces: [ Ethernet49, Ethernet50 ]
     mlag_interfaces: [ Ethernet47, Ethernet48 ]

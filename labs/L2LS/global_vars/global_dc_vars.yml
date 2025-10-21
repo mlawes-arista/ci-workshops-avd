@@ -1,7 +1,7 @@
 ---
 # Credentials for EOS Switches
 ansible_user: arista
-ansible_password: "{{ lookup('env', 'LABPASSPHRASE') }}"
+ansible_password: "{{ (lookup('file', '/home/coder/.config/code-server/config.yaml', errors='ignore') | from_yaml).password | default(lookup('ansible.builtin.env', 'LABPASSPHRASE')) }}"
 ansible_network_os: arista.eos.eos
 # Configure privilege escalation
 ansible_become: true
@@ -14,7 +14,7 @@ ansible_httpapi_validate_certs: false
 ansible_python_interpreter: $(which python3)
 
 # arista.avd.cv_deploy role parameters
-# Export token using 'export CV_TOKEN=mytoken'
+# Export token using 'export CV_TOKEN=<generated token here>'
 cv_token: "{{ lookup('env', 'CV_TOKEN') }}"
 cv_server: cvp
 cv_verify_certs: false
