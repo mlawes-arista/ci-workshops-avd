@@ -2,7 +2,7 @@
 collections:
 
   - name: arista.avd
-    version: 5.7.0
+    version: 5.7.1
 
   - name: community.general
     version: 11.2.1
