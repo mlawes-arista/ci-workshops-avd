@@ -64,10 +64,7 @@ preplab: ## Deploy Configs via eAPI
 
 .PHONY: cicd-ff
 cicd-ff: ## Copy complete files for CICD
-	cp -a complete/site_1/group_vars/. sites/site_1/group_vars/ && \
-	cp -a complete/site_2/group_vars/. sites/site_2/group_vars/ && \
-	cp -a complete/global_vars/global_dc_vars.yml global_vars/global_dc_vars.yml && \
-	cp -a complete/playbooks/cvp.yml playbooks/cvp.yml
+	ansible-playbook playbooks/ff.yml
 
 ########################################################
 # Build and deploy all sites

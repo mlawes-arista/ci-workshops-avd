@@ -1,0 +1,33 @@
+---
+- name: Copy complete files for CICD
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    project_root: "{{ playbook_dir }}/.."
+    cvp: "{{ (lookup('file', '/etc/atd/ACCESS_INFO.yaml') | from_yaml).name }}"
+
+  tasks:
+    - name: Sync site_1 group_vars content
+      ansible.builtin.synchronize:
+        src: "{{ project_root }}/complete/site_1/group_vars/"
+        dest: "{{ project_root }}/sites/site_1/group_vars/"
+        archive: yes
+
+    - name: Sync site_2 group_vars content
+      ansible.builtin.synchronize:
+        src: "{{ project_root }}/complete/site_2/group_vars/"
+        dest: "{{ project_root }}/sites/site_2/group_vars/"
+        archive: yes
+
+    - name: Copy global_dc_vars.yml
+      ansible.builtin.copy:
+        src: "{{ project_root }}/complete/global_vars/global_dc_vars.yml"
+        dest: "{{ project_root }}/global_vars/global_dc_vars.yml"
+        mode: 'preserve'
+
+    - name: Copy cvp.yml
+      ansible.builtin.template:
+        src: "{{ project_root }}/complete/playbooks/cvp.j2"
+        dest: "{{ project_root }}/playbooks/cvp.yml"
+        mode: 'preserve'

@@ -1,6 +1,8 @@
 ---
 - name: Deploy to CloudVision
+  {%- raw %}
   hosts: "{{ target_hosts }}"
+  {% endraw -%}
   gather_facts: false
 
   tasks:
@@ -10,4 +12,4 @@
         name: arista.avd.cv_deploy
       vars:
         cv_run_change_control: true
-        cv_server: # Replace me with your ATD URL <atd-topo12345.topo.testdrive.arista.com>
+        cv_server: "{{ cvp }}.topo.testdrive.arista.com"
