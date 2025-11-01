@@ -5,7 +5,7 @@
 
   vars:
     project_root: "{{ playbook_dir }}/.."
-    cvp: "{{ (lookup('file', '/etc/atd/ACCESS_INFO.yaml') | from_yaml).name }}"
+    cvp: "{{ ((lookup('file', '/etc/atd/ACCESS_INFO.yaml', errors='ignore') | from_yaml).name | default('ACCESS_INFO_NOT_FOUND')) }}"
 
   tasks:
     - name: Sync site_1 group_vars content
