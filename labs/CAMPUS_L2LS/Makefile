@@ -34,13 +34,3 @@ validate-campus-a: ## Validate network state
 .PHONY: preplab
 preplab: ## Deploy Preparation Configs via eAPI
 	ansible-playbook playbooks/preplab.yml -i extra_configs/inventory.yml -e "target_hosts=LAB"
-
-########################################################
-# Fast forward CICD
-########################################################
-
-.PHONY: cicd-ff
-cicd-ff: ## Copy complete files for CICD
-	cp -a complete/site_1/group_vars/. sites/site_1/group_vars/ && \
-	cp -a complete/site_2/group_vars/. sites/site_2/group_vars/ && \
-	cp -a complete/global_vars/. global_vars/

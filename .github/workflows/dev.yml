@@ -9,6 +9,7 @@ jobs:
   dev:
     env:
       LABPASSPHRASE: ${{ secrets.LABPASSPHRASE }}
+      CV_TOKEN: ${{ secrets.CV_TOKEN }}
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
@@ -19,13 +20,13 @@ jobs:
       #   uses: actions/checkout@v4
 
       # - name: Setup Python
-      #   uses: actions/setup-python@v5
+      #   uses: actions/setup-python@v6
 
       # - name: Install Python requirements
       #   run: pip3 install -r requirements.txt
 
       # - name: Run pre-commit on files
-      #   uses: pre-commit/action@v3.0.0
+      #   uses: pre-commit/action@v3.0.1
 
       # - name: Check paths for sites/site_1
       #   uses: dorny/paths-filter@v3

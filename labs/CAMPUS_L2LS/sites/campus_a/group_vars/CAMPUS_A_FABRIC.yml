@@ -6,12 +6,20 @@ fabric_ip_addressing:
   mlag:
     algorithm: same_subnet
 
+# Generate CloudVision Tags based on AVD data
+generate_cv_tags:
+  topology_hints: true
+  campus_fabric: true
+
+# Used to generate CloudVision device tags with the `generate_cv_tags.campus_fabric` feature.
+campus: Cleveland
+campus_pod: Campus A
+
 # Spine Switches
 l3spine:
   defaults:
     platform: cEOS
     spanning_tree_mode: mstp
-    spanning_tree_priority: 4096
     loopback_ipv4_pool: 10.1.252.0/24
     mlag_peer_ipv4_pool: 10.1.253.0/31
     mlag_peer_l3_ipv4_pool: 10.1.253.2/31
@@ -33,7 +41,6 @@ l2leaf:
     platform: cEOS
     mlag_peer_ipv4_pool: 10.1.253.0/31
     spanning_tree_mode: mstp
-    spanning_tree_priority: 16384
     uplink_switches: [ spine-1, spine-2 ]
     uplink_interfaces: [ Ethernet49, Ethernet50 ]
     mlag_interfaces: [ Ethernet47, Ethernet48 ]
@@ -41,6 +48,7 @@ l2leaf:
     - group: IDF1
       filter:
         tags: [ "IDF1_DATA", "IDF1_VOICE" ]
+      campus_access_pod: IDF1
       nodes:
         - name: leaf-1a
           id: 1
@@ -67,6 +75,7 @@ l2leaf:
     - group: IDF3
       filter:
         tags: [ "IDF3_DATA", "IDF3_VOICE" ]
+      campus_access_pod: IDF3
       nodes:
         - name: leaf-3a
           id: 4
@@ -79,6 +88,8 @@ l2leaf:
     - group: IDF3_3C
       filter:
         tags: [ "IDF3_DATA", "IDF3_VOICE" ]
+      campus_access_pod: IDF3
+      cv_tags_topology_type: member-leaf
       mlag: false
       nodes:
         - name: member-leaf-3c
@@ -89,6 +100,8 @@ l2leaf:
     - group: IDF3_3D
       filter:
         tags: [ "IDF3_DATA", "IDF3_VOICE" ]
+      campus_access_pod: IDF3
+      cv_tags_topology_type: member-leaf
       mlag: false
       nodes:
         - name: member-leaf-3d
@@ -99,6 +112,8 @@ l2leaf:
     - group: IDF3_3E
       filter:
         tags: [ "IDF3_DATA", "IDF3_VOICE" ]
+      campus_access_pod: IDF3
+      cv_tags_topology_type: member-leaf
       mlag: false
       nodes:
         - name: member-leaf-3e
